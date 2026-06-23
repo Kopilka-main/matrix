@@ -1,0 +1,70 @@
+services:
+  # Отдельная БД для Synapse (НЕ трогает БД прототипа /opt/messenger).
+  synapse-db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: synapse
+      POSTGRES_PASSWORD: ${SYNAPSE_DB_PASSWORD:?нужен SYNAPSE_DB_PASSWORD в .env}
+      POSTGRES_DB: synapse
+      # Synapse требует C-локаль для корректной сортировки.
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    volumes:
+      - synapse-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U synapse']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Homeserver Matrix.
+  synapse:
+    image: ghcr.io/element-hq/synapse:latest
+    restart: unless-stopped
+    # Грузим сгенерированный homeserver.yaml + наши оверрайды (порядок важен).
+    entrypoint: ["python", "-m", "synapse.app.homeserver"]
+    command:
+      - "-c"
+      - "/data/homeserver.yaml"
+      - "-c"
+      - "/data/conf.d/override.yaml"
+      - "-c"
+      - "/data/conf.d/local.yaml"
+    environment:
+      SYNAPSE_REPORT_STATS: "no"
+    volumes:
+      - ./synapse:/data
+    depends_on:
+      synapse-db:
+        condition: service_healthy
+    networks:
+      default: {}
+      # Наружу — только через общий Caddy (как messenger-web у прототипа).
+      proxy:
+        aliases:
+          - matrix-synapse
+    # Локальная отладка на VPS (наружу не торчит).
+    ports:
+      - '127.0.0.1:8008:8008'
+
+  # Веб-клиент Element.
+  element:
+    image: vectorim/element-web:latest
+    restart: unless-stopped
+    volumes:
+      - ./element/config.json:/app/config.json:ro
+    networks:
+      default: {}
+      proxy:
+        aliases:
+          - matrix-element
+    ports:
+      - '127.0.0.1:8091:80'
+
+volumes:
+  synapse-db:
+
+networks:
+  # Та же внешняя сеть, что использует прототип и Caddy.
+  proxy:
+    external: true

@@ -1,0 +1,33 @@
+# Оверрайды поверх сгенерированного homeserver.yaml.
+# БЕЗ секретов (этот файл коммитится). Секреты — в local.yaml.
+
+# Где клиенты реально достучатся до сервера.
+public_baseurl: "https://matrix.fitbond.ru/"
+
+# Слушаем только HTTP внутри Docker; TLS терминирует Caddy.
+listeners:
+  - port: 8008
+    type: http
+    tls: false
+    x_forwarded: true
+    bind_addresses: ['0.0.0.0']
+    resources:
+      - names: [client]
+        compress: false
+
+# Изолированный on-premise: федерация выключена полностью.
+federation_domain_whitelist: []
+trusted_key_servers: []
+suppress_key_server_warning: true
+
+# Регистрация закрыта — пользователей заводит админ (как в прототипе).
+enable_registration: false
+
+# E2E-шифрование принудительно включено во всех новых комнатах.
+encryption_enabled_by_default_for_room_type: all
+
+# Лимит загрузки файлов.
+max_upload_size: 100M
+
+# Предпросмотр ссылок выключен (меньше поверхность атаки/SSRF).
+url_preview_enabled: false

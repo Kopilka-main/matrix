@@ -1,0 +1,35 @@
+{
+  "default_server_config": {
+    "m.homeserver": {
+      "base_url": "https://matrix.fitbond.ru",
+      "server_name": "fitbond.ru"
+    }
+  },
+  "brand": "FitBond",
+  "disable_custom_urls": true,
+  "disable_guests": true,
+  "disable_3pid_login": true,
+  "default_country_code": "RU",
+  "default_theme": "fitbond",
+  "setting_defaults": {
+    "custom_themes": [
+      {
+        "name": "fitbond",
+        "is_dark": false,
+        "colors": {
+          "accent-color": "#1f9d55",
+          "primary-color": "#1f9d55",
+          "warning-color": "#ff5b55",
+          "sidebar-color": "#0f1f17",
+          "roomlist-background-color": "#f4f8f5",
+          "roomlist-text-color": "#0f1f17",
+          "roomlist-highlights-color": "#e3efe7",
+          "timeline-background-color": "#ffffff",
+          "timeline-text-color": "#101010"
+        }
+      }
+    ]
+  },
+  "features": {},
+  "show_labs_settings": false
+}

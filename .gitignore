@@ -1,0 +1,8 @@
+.env
+
+# Данные и секреты Synapse: коммитим только override.yaml и пример local.
+synapse/*
+!synapse/conf.d
+synapse/conf.d/*
+!synapse/conf.d/override.yaml
+!synapse/conf.d/local.yaml.example

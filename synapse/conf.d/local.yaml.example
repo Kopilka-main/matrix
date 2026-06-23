@@ -1,0 +1,23 @@
+# СЕКРЕТЫ. Скопируйте в local.yaml и подставьте значения. local.yaml НЕ коммитится.
+
+# Подключение к БД Synapse. password = SYNAPSE_DB_PASSWORD из .env.
+database:
+  name: psycopg2
+  args:
+    user: synapse
+    password: "ЗАМЕНИ_НА_SYNAPSE_DB_PASSWORD"
+    database: synapse
+    host: synapse-db
+    port: 5432
+    cp_min: 5
+    cp_max: 10
+
+# Звонки через существующий coturn прототипа.
+# Возьмите TURN_USER / TURN_PASSWORD из /opt/messenger/.env.
+turn_uris:
+  - "turn:msg.fitbond.ru:3478?transport=udp"
+  - "turn:msg.fitbond.ru:3478?transport=tcp"
+turn_username: "ЗАМЕНИ_TURN_USER"
+turn_password: "ЗАМЕНИ_TURN_PASSWORD"
+turn_user_lifetime: 86400000
+turn_allow_guests: false

@@ -1,0 +1,27 @@
+# Добавьте эти блоки в общий Caddyfile на VPS (тот же Caddy, что обслуживает прототип).
+# ВАЖНО: контейнер Caddy должен быть в docker-сети `proxy` (как для messenger-web),
+# тогда он резолвит алиасы matrix-synapse / matrix-element.
+
+# --- Веб-клиент Element ---
+app.fitbond.ru {
+    reverse_proxy matrix-element:80
+}
+
+# --- Homeserver Synapse ---
+matrix.fitbond.ru {
+    reverse_proxy matrix-synapse:8008
+}
+
+# --- Делегация на корневом домене, чтобы ID были @user:fitbond.ru ---
+# Эти два handle добавьте ВНУТРЬ существующего блока `fitbond.ru { ... }`.
+# (Если корневой домен обслуживает другой Caddy — добавьте туда.)
+#
+#   handle /.well-known/matrix/client {
+#       header Content-Type application/json
+#       header Access-Control-Allow-Origin *
+#       respond `{"m.homeserver":{"base_url":"https://matrix.fitbond.ru"}}`
+#   }
+#   handle /.well-known/matrix/server {
+#       header Content-Type application/json
+#       respond `{"m.server":"matrix.fitbond.ru:443"}`
+#   }
