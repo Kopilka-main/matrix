@@ -3,7 +3,7 @@
 # тогда он резолвит алиасы matrix-synapse / matrix-element.
 
 # --- Веб-клиент Element ---
-app.fitbond.ru {
+chat.fitbond.ru {
     reverse_proxy matrix-element:80
 }
 
