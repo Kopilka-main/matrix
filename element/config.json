@@ -5,7 +5,10 @@
       "server_name": "fitbond.ru"
     }
   },
-  "brand": "FitBond",
+  "brand": "ЛизаАлерт Чат",
+  "branding": {
+    "auth_header_logo_url": "https://chat.fitbond.ru/lizaalert-logo.png"
+  },
   "disable_custom_urls": true,
   "disable_guests": true,
   "disable_3pid_login": true,
