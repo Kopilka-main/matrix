@@ -1,8 +1,7 @@
 {
   "default_server_config": {
     "m.homeserver": {
-      "base_url": "https://matrix.fitbond.ru",
-      "server_name": "fitbond.ru"
+      "base_url": "https://matrix.fitbond.ru"
     }
   },
   "brand": "ЛизаАлерт Чат",
