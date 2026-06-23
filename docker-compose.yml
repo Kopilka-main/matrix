@@ -19,7 +19,7 @@ services:
 
   # Homeserver Matrix.
   synapse:
-    image: ghcr.io/element-hq/synapse:latest
+    image: matrixdotorg/synapse:latest
     restart: unless-stopped
     # Грузим сгенерированный homeserver.yaml + наши оверрайды (порядок важен).
     entrypoint: ["python", "-m", "synapse.app.homeserver"]

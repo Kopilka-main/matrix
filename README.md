@@ -49,7 +49,7 @@ docker run --rm \
   -v "$(pwd)/synapse:/data" \
   -e SYNAPSE_SERVER_NAME=fitbond.ru \
   -e SYNAPSE_REPORT_STATS=no \
-  ghcr.io/element-hq/synapse:latest generate
+  matrixdotorg/synapse:latest generate
 ```
 Создаст `synapse/homeserver.yaml` и `synapse/fitbond.ru.signing.key`.
 Наши `override.yaml` и `local.yaml` загружаются поверх и переопределяют нужное.
