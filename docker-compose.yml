@@ -53,7 +53,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./element/config.json:/app/config.json:ro
-      - ./element/lizaalert-logo.png:/app/lizaalert-logo.png:ro
+      - ./element/lizaalert-logo.svg:/app/lizaalert-logo.svg:ro
     networks:
       default: {}
       proxy:

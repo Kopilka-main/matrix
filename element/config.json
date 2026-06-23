@@ -7,7 +7,7 @@
   },
   "brand": "ЛизаАлерт Чат",
   "branding": {
-    "auth_header_logo_url": "https://chat.fitbond.ru/lizaalert-logo.png"
+    "auth_header_logo_url": "https://chat.fitbond.ru/lizaalert-logo.svg"
   },
   "disable_custom_urls": true,
   "disable_guests": true,
