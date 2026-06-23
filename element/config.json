@@ -12,6 +12,7 @@
   "disable_custom_urls": true,
   "disable_guests": true,
   "disable_3pid_login": true,
+  "mobile_guide_toast": false,
   "default_country_code": "RU",
   "default_theme": "fitbond",
   "setting_defaults": {
