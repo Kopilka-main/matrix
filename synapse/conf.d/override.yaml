@@ -31,3 +31,10 @@ max_upload_size: 100M
 
 # Предпросмотр ссылок выключен (меньше поверхность атаки/SSRF).
 url_preview_enabled: false
+
+# Каталог пользователей: можно находить любого коллегу по имени,
+# а не только тех, с кем уже есть общий чат.
+user_directory:
+  enabled: true
+  search_all_users: true
+  prefer_local_users: true
